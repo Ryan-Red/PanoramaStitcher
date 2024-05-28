@@ -11,8 +11,6 @@ from cv2 import SIFT_create
 from cv2 import FlannBasedMatcher
 from cv2 import findHomography, RANSAC
 
-# TODO: remove this import
-
 MAX_RES_X = 3000
 MAX_RES_Y = 1300
 

@@ -7,16 +7,15 @@ from cv2 import imread, imwrite, resize, imshow, waitKey, destroyAllWindows
 from mosaic_images import mosaic_images
 
 
-PANORAMA_WIDTH = 3000
-PANORAMA_HEIGHT = 1300
-PANORAMA_CHANNELS = 3
+# PANORAMA_WIDTH = 3000
+# PANORAMA_HEIGHT = 1300
+# PANORAMA_CHANNELS = 3
 
 def create_panorama(image_files):
     
     # Load images.
-    image_order = [0,1,2,3,4,5,6]
     images = []
-    for i in image_order:
+    for i in range(0, len(image_files), 1):
         i_name = image_files[i] 
         images.append(imread(i_name))
 
