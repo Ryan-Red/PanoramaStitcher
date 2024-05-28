@@ -20,7 +20,7 @@ To use this repo, first clone the repo using:
 git clone https://github.com/Ryan-Red/PanoramaStitcher.git
 ```
 
-**Important**: The first image **MUST** be the top-left image in the desired panorama. Please bear in mind that the default resolution of the resulting panorama is defined in the top of the `mosaic_images.py' file under the variables `MAX_RES_X` and `MAX_RES_Y`. This will be changed in a future version. 
+**Important**: The first image **MUST** be the top-left image in the desired panorama. Please bear in mind that the default resolution of the resulting panorama is defined in the top of the `mosaic_images.py` file under the variables `MAX_RES_X` and `MAX_RES_Y`. This will be changed in a future version. 
 
 ## Example:
 We have 3 images: 1.png, 2.png and 3.png inside a folder called img.
