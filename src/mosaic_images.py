@@ -37,7 +37,6 @@ def bilinear_interp(I, pt):
     --------
     b  - Interpolated brightness or intensity value (whole number >= 0).
     """
-    #--- FILL ME IN ---
    
     if pt.shape != (2, 1):
         raise ValueError('Point size is incorrect.')
@@ -84,26 +83,15 @@ def bilinear_interp(I, pt):
 
 
 def mosaic_images(I1, I2, show_me = True):
-    # Load images.
-    # I1 = imread(I1_name)#.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    # I2 = imread(I2_name)#.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Feature matching - remember I1 is the anchor.
     feature_descriptor = SIFT_create()
     keypoints1, descriptors1 = feature_descriptor.detectAndCompute(I1, None)
     keypoints2, descriptors2 = feature_descriptor.detectAndCompute(I2, None)
 
-    # if show_me:
-        #   imshow("Key points in Image 1", drawKeypoints(I1, keypoints1, None))
-        #   imshow("Key points in Image 2", drawKeypoints(I2, keypoints2, None))
-        #   waitKey()
-        #   destroyAllWindows()
-
     FLANN_INDEX_KDTREE = 1
     index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 2)
     search_params = dict(checks = 50)
-    
-    # print(descriptors1.shape, descriptors2.shape)
 
 
 
@@ -190,6 +178,7 @@ def mosaic_images(I1, I2, show_me = True):
                 resB = bilinear_interp(I2[:,:,2],t)
                 if(resR == resG == resB == 0):
                     continue
+                    
                 I3_temp[0, i, 0] = resR
                 I3_temp[0, i, 1] = resG
                 I3_temp[0, i, 2] = resB
@@ -208,97 +197,10 @@ def mosaic_images(I1, I2, show_me = True):
     I3_integrated[min_y:max_y, :, :] = I3_added
     I3 = I3 + I3_integrated
 
-    
-
-            
-
-
-
-    # for j in range(0,I2.shape[0],1): # y index, iterates inside the bounding box
-    #         for i in range(0,I2.shape[1],1): #x index
-                
-                
-    #             try:
-    #                 val = I2[j, i, 0] == I2[j, i, 1] == 0 and I2[j, i, 2] == 0
-            
-    #                 if (val) :
-    #                     continue
-    #             except Exception as e:
-    #                 continue
-    #             pointToTransform = np.array([i,j,1])
-    #             target = np.matmul(M_inv, pointToTransform)
-    #             t = np.array([[target[0]/target[2],target[1]/target[2]]]).T
-
-              
-    #             if t[0] > maxT_x:
-    #                 maxT_x = int(t[0])
-    #             if t[1] > maxT_y:
-    #                 maxT_y = int(t[1])
-
-                
-
-    #             # # if(t[1] < 0):
-    #             # print(t)
-    #             # resR = bilinear_interp(I1[:,:,0],t)
-    #             # resG = bilinear_interp(I1[:,:,1],t)
-    #             # resB = bilinear_interp(I1[:,:,2],t)
-                
-    #             t = t.astype(np.int64)
-        
-    #             # # print(t)
-    #             try:
-    #                 I3[t[1],t[0],0] = I2[j,i,0]
-    #                 I3[t[1],t[0],1]= I2[j,i,1]
-    #                 I3[t[1],t[0],2] = I2[j,i,2]
-    #             except Exception as e:
-  
-    #                 try:
-    #                     I3[t[1],t[0],0] = I3[j,i,0]
-    #                     I3[t[1],t[0],1] = I3[j,i,1]
-    #                     I3[t[1],t[0],2] = I3[j,i,2]
-    #                 except Exception as e:
-    #                     continue
-
-    #                 continue
-
-       
-
-    # dst = perspectiveTransform(pts,M_inv) ############################################################### NOOOOOOOOO!!!!!
-
-    
-
-
-    # img3 = warpPerspective(I2, M, (w,h))
-    
-    
-
-
-    # I1 = polylines(I1,[np.int32(dst)],True,255,3, LINE_AA)
-
-
-    # draw_params = dict(matchColor = (0,255,0), # draw matches in green color
-    #                 singlePointColor = None,
-    #                 matchesMask = matchesMask, # draw only inliers
-    #                 flags = 2)
-    # img3 = drawMatches(I1,keypoints1,I2,keypoints2,good,None,**draw_params)
-    # I3 = I3[:MAX_RES_Y,:MAX_RES_X]
-    # imshow('gray', I3)
-
- 
-    # waitKey()
-    # destroyAllWindows()
-
-    # imshow('gray2', I3_added)
-    # waitKey()
-    # destroyAllWindows()
-    # Get the Homography
-
-
-
-
-
-
-
+    if(show_me):
+        imshow('current Frame', I3_added)
+        waitKey()
+        destroyAllWindows()
     # Return mosaicked images (of correct, full size).
     return I3
 
