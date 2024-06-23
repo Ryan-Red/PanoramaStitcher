@@ -82,7 +82,7 @@ def bilinear_interp(I, pt):
     return b
 
 
-def mosaic_images(I1, I2, show_me = True):
+def mosaic_images(I1, I2, show_me = False):
 
     # Feature matching - remember I1 is the anchor.
     feature_descriptor = SIFT_create()

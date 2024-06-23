@@ -6,11 +6,9 @@ This project lets you stitch an arbitrary amount of pictures together into a pan
 # Dependencies
 This project depends on **multiprocess** (_NOT_ multiprocessing), openCV 4+ and numpy.
 
-To install both, simply run:
+To install all dependencies, simply run:
 ```
-pip install multiprocess
-pip install opencv-python
-pip install numpy
+pip install multiprocess opencv-python numpy
 ```
 
 ## Usage Guide:
@@ -33,6 +31,10 @@ or
 ```
 python3 src/panorama.py img/*
 ```
+
+Try it for yourself with the images in `examples/input_img`. The output should look like:
+
+![Panorama Example](example/output/panorama.png)
 
 
 # Enjoy!
